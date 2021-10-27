@@ -49,10 +49,8 @@ class EngineBuilder:
         os.makedirs(engine_dir, exist_ok=True)
         print("Building {} Engine in {}".format(precision, engine_path))
 
-        inputs = [self.network.get_input(i) for i in range(self.network.num_inputs)]
-
         if precision == "fp16":
-            self.config_set_flag(trt.BuilderFlag.FP16)
+            self.config.set_flag(trt.BuilderFlag.FP16)
 
         with self.builder.build_engine(self.network, self.config) as engine, open(engine_path, "wb") as f:
             print("Serializing engine to file: {:}".format(engine_path))
