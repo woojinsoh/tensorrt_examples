@@ -20,15 +20,16 @@ Explore the following notebooks:
 - [Inference Test](./3_Inference_Test.ipynb)
 
 ## Test Results
-Results are obtained on A100 with PyTorch:22.07-py3 container where TensorRT version is 8.4.3.1.
+Results are obtained on NVIDIA A100 GPU with PyTorch:22.07-py3 container where TensorRT version 8.4.3.1 is manually installed. 
+The avg latency for each case is measured by making a total of ten consecutive single batch requests(Num requests).
 ### Tacotron2 + Waveglow
 | Framework | Batch size | Input length | Precision | Num requests | Avg latency(s) | Latency std(s) |
 |-----------|------------|--------------|-----------|--------------|----------------|----------------|
-|   Torch   |      1     |      155     |   FP16    |      10      |      1.213     |     0.034      |               
+| PyTorch   |      1     |      155     |   FP16    |      10      |      1.213     |     0.034      |               
 | TensorRT  |      1     |      155     |   FP16    |      10      |      0.810     |     0.036      |
 
 ### Tacotron2 + ParallelWaveGan
 | Framework | Batch size | Input length | Precision | Num requests | Avg latency(s) | Latency std(s) |
 |-----------|------------|--------------|-----------|--------------|----------------|----------------|
-|   Torch   |      1     |      155     |   FP16    |      10      |      1.152     |     0.032      |               
+| PyTorch   |      1     |      155     |   FP16    |      10      |      1.152     |     0.032      |               
 | TensorRT  |      1     |      155     |   FP16    |      10      |      0.787     |     0.037      |
