@@ -1,0 +1,8 @@
+__pycache__/
+.ipynb_checkpoints/
+tacotron2/checkpoints
+tacotron2/logs
+tacotron2/outputs
+
+
+
