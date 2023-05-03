@@ -1,0 +1,6 @@
+transformers==4.19.4
+tabulate
+onnx-graphsurgeon
+onnxruntime-gpu
+sentencepiece
+colored
