@@ -147,3 +147,14 @@ success &= bool(Comparator.compare_accuracy(results))
 # Report Results
 if not success:
     raise PolygraphyException('DECODER FAILED')
+
+
+
+
+
+
+# trtexec --onnx=T5-base-decoder-with-lm-head.onnx --minShapes=input_ids:1x1,encoder_hidden_states:1x1x768,encoder_attention_mask:1x1,hidden_states:1x1x768 --optShapes=input_ids:1x384,encoder_hidden_states:1x384x768,encoder_attention_mask:1x384,hidden_states:1x32x768 --maxShapes=input_ids:1x768,encoder_hidden_states:1x768x768,encoder_attention_mask:1x768,hidden_states:1x64x768 --saveEngine=removed_decoder.engine
+# trtexec --fp16 --outputIOFormat=fp16 --onnx=t5-base-encoder.onnx --minShapes=input_ids:1x1,attention_mask:1x1 --optShapes=input_ids:1x40,attention_mask:1x40 --maxShapes=input_ids:1x64,attention_mask:1x64 --saveEngine=encoder_test.engine
+# polygraphy run T5-base-decoder-with-lm-head.onnx --input-shapes input_ids:[1,1] encoder_hidden_states:[1,40,768] encoder_attention_mask:[1,40] --trt-min-shapes input_ids:[1,1] encoder_hidden_states:[1,1,768] encoder_attention_mask:[1,1] --trt-opt-shapes input_ids:[1,384] encoder_hidden_states:[1,384,768] encoder_attention_mask:[1,384] --trt-max-shape input_ids:[1,768] encoder_hidden_states:[1,768,768] encoder_attention_mask:[1,768] --trt
+# polygraphy run t5-base-encoder.onnx --input-shapes input_ids:[1,40] attention_mask:[1,40] --trt-min-shapes input_ids:[1,1] attention_mask:[1,1] --trt-opt-shapes input_ids:[1,384] attention_mask:[1,384] --trt-max-shape input_ids:[1,768] attention_mask:[1,768] --trt
+
